@@ -1,0 +1,18 @@
+#heading {
+    -fx-font-size: 50px;
+}
+
+#labelPlayersCount, .buttonPlayersCount, #labelPlayerName {
+    -fx-font-size: 20px;
+}
+
+#wrapperPlayersCount {
+    -fx-spacing: 30px;
+}
+
+.buttonPlayersCount {
+    -fx-label-padding: 20px 30px;
+    -fx-border-style: solid;
+    -fx-border-width: 1px;
+    -fx-border-color: black;
+}

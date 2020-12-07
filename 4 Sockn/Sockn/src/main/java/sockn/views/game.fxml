@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.net.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.image.ImageView?>
+
+<BorderPane prefHeight="760.0" prefWidth="1000.0" style="-fx-background-color: #275a32" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sockn.controllers.GameController">
+    <center>
+        <VBox fx:id="matchField" alignment="CENTER">
+            <HBox fx:id="containerPlayerNamesOfCards" alignment="CENTER"/>
+            <HBox fx:id="panePlayedCards" alignment="CENTER" minHeight="97.0" />
+            <HBox alignment="CENTER" styleClass="trump-container">
+                <Label styleClass="trump-left">Trumpf: </Label>
+                <Label fx:id="trump" styleClass="trump-right">-</Label>
+                <VBox.margin>
+                   <Insets top="20.0" bottom="20.0"/>
+                </VBox.margin>
+            </HBox>
+            <HBox fx:id="containerPlayerNamesOfCardsBefore" alignment="CENTER"/>
+            <HBox fx:id="panePlayedCardsBefore" alignment="CENTER" />
+            <HBox alignment="CENTER">
+                <Label fx:id="lastStich"></Label>
+            </HBox>
+        </VBox>
+    </center>
+    <top>
+        <AnchorPane styleClass="anchor-pane" BorderPane.alignment="CENTER">
+            <children>
+                <VBox alignment="CENTER" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="10.0">
+                    <StackPane fx:id="topStackPane" />
+                    <HBox fx:id="labelContainerPlayerNameTop" alignment="CENTER">
+                        <HBox fx:id="wrapperPlayerTop">
+                            <VBox alignment="CENTER">
+                                <Label styleClass="labelPlayerName">Player X</Label>
+                            </VBox>
+                            <HBox style="-fx-padding: 0 100px">
+                                <ImageView styleClass="imageViewPutzen" fitHeight="50" preserveRatio="true"/>
+                            </HBox>
+                            <HBox>
+                                <HBox style="-fx-padding: 0 20px" alignment="CENTER_LEFT">
+                                    <Label styleClass="label">Stiche: </Label>
+                                    <Label fx:id="labelTopPlayerStichs" styleClass="label">0</Label>
+                                </HBox>
+                                <HBox alignment="CENTER_LEFT">
+                                    <Label styleClass="label">Punkte: </Label>
+                                    <Label fx:id="labelTopPlayerPoints" styleClass="label">0</Label>
+                                </HBox>
+                            </HBox>
+                        </HBox>
+                    </HBox>
+                </VBox>
+            </children>
+        </AnchorPane>
+    </top>
+    <left>
+        <AnchorPane styleClass="anchor-pane" BorderPane.alignment="CENTER">
+            <children>
+                <VBox alignment="CENTER" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="0.0">
+                    <HBox fx:id="labelContainerPlayerNameLeft" alignment="CENTER">
+                        <Label styleClass="labelPlayerName">Player X</Label>
+                    </HBox>
+                    <StackPane fx:id="leftStackPane" />
+                    <VBox fx:id="wrapperPlayerLeftPoints" alignment="CENTER_LEFT">
+                        <HBox style="-fx-padding: 0 0 10px 0" alignment="CENTER">
+                            <ImageView styleClass="imageViewPutzen" fitHeight="50" preserveRatio="true"/>
+                        </HBox>
+                        <HBox>
+                            <Label styleClass="label">Stiche: </Label>
+                            <Label fx:id="labelLeftPlayerStichs" styleClass="label">0</Label>
+                        </HBox>
+                        <HBox>
+                            <Label styleClass="label">Punkte: </Label>
+                            <Label fx:id="labelLeftPlayerPoints" styleClass="label">0</Label>
+                        </HBox>
+                    </VBox>
+                </VBox>
+            </children>
+        </AnchorPane>
+    </left>
+    <right>
+        <AnchorPane styleClass="anchor-pane" BorderPane.alignment="CENTER">
+            <children>
+                <VBox alignment="CENTER" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="0.0">
+                    <HBox fx:id="labelContainerPlayerNameRight" alignment="CENTER">
+                        <Label styleClass="labelPlayerName">Player X</Label>
+                    </HBox>
+                    <StackPane fx:id="rightStackPane" />
+                    <VBox fx:id="wrapperPlayerRightPoints" alignment="CENTER_LEFT">
+                        <HBox style="-fx-padding: 0 0 10px 0" alignment="CENTER">
+                            <ImageView styleClass="imageViewPutzen" fitHeight="50" preserveRatio="true"/>
+                        </HBox>
+                        <HBox>
+                            <Label styleClass="label">Stiche: </Label>
+                            <Label fx:id="labelRightPlayerStichs" styleClass="label">0</Label>
+                        </HBox>
+                        <HBox>
+                            <Label styleClass="label">Punkte: </Label>
+                            <Label fx:id="labelRightPlayerPoints" styleClass="label">0</Label>
+                        </HBox>
+                    </VBox>
+                </VBox>
+            </children>
+        </AnchorPane>
+    </right>
+    <bottom>
+        <AnchorPane styleClass="anchor-pane" BorderPane.alignment="CENTER">
+            <children>
+                <VBox alignment="CENTER" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="10.0">
+                    <HBox fx:id="labelContainerPlayerNameBottom" alignment="CENTER">
+                        <HBox fx:id="wrapperPlayerBottom">
+                            <VBox alignment="CENTER">
+                                <Label styleClass="labelPlayerName">Player X</Label>
+                            </VBox>
+                            <HBox style="-fx-padding: 0 100px">
+                                <ImageView styleClass="imageViewPutzen" fitHeight="50" preserveRatio="true"/>
+                            </HBox>
+                            <HBox>
+                                <HBox style="-fx-padding: 0 20px" alignment="CENTER_LEFT">
+                                    <Label styleClass="label">Stiche: </Label>
+                                    <Label fx:id="labelBottomPlayerStichs" styleClass="label">0</Label>
+                                </HBox>
+                                <HBox alignment="CENTER_LEFT">
+                                    <Label styleClass="label" >Punkte: </Label>
+                                    <Label fx:id="labelBottomPlayerPoints" styleClass="label">0</Label>
+                                </HBox>
+                            </HBox>
+                        </HBox>
+                    </HBox>
+                    <StackPane fx:id="bottomStackPane" />
+                </VBox>
+                <Button fx:id="buttonNewGame" AnchorPane.bottomAnchor="10.0" AnchorPane.rightAnchor="10.0">New Game
+                </Button>
+            </children>
+        </AnchorPane>
+    </bottom>
+
+    <stylesheets>
+        <URL value="@../resources/css/Game.css" />
+    </stylesheets>
+</BorderPane>
