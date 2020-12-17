@@ -15,6 +15,8 @@ import javafx.scene.layout.Pane;
 import javafx.scene.text.Font;
 import javafx.stage.StageStyle;
 import sockn.enums.PlayerPosition;
+import sockn.events.CardEvent;
+import sockn.events.CardEventHandler;
 
 import java.util.ArrayList;
 import java.util.Optional;
@@ -116,13 +118,13 @@ public class Game {
     private void initEventListeners() {
         this.rootPane.addEventHandler(CardEvent.PLAYED_CARD, new CardEventHandler() {
             @Override
-            void onBotPlayedCard(int playerNumber, Card playedCard) {
+            public void onBotPlayedCard(int playerNumber, Card playedCard) {
                 addPlayedCardToRound(players[playerNumber], playedCard);
                 forcePlayerToPlayCard(indexOfNextPlayer(playerNumber));
             }
 
             @Override
-            void onHumanPlayedCard(int playerNumber, Card playedCard) {
+            public void onHumanPlayedCard(int playerNumber, Card playedCard) {
                 players[playerNumber].removeClickListenerForCards();
 
                 addPlayedCardToRound(players[playerNumber], playedCard);

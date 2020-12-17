@@ -6,6 +6,8 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
+import sockn.events.CardEventBotPlayedCard;
+import sockn.events.CardEventHumanPlayedCard;
 
 import java.util.ArrayList;
 
