@@ -5,6 +5,8 @@ import javafx.scene.image.ImageView;
 import sockn.enums.CardColor;
 import sockn.enums.CardSymbol;
 
+import static sockn.resources.config.Config.RESOURCES_IMAGES;
+
 public class Card {
     private CardColor color;
     private CardSymbol symbol;
@@ -34,7 +36,7 @@ public class Card {
     }
 
     void setImage() {
-        String url = getClass().getResource("../../images/" + generatePictureUrl()).toExternalForm();
+        String url = getClass().getResource(RESOURCES_IMAGES + generatePictureUrl()).toExternalForm();
         this.image = new Image(url);
         this.imageView.setImage(this.image);
     }

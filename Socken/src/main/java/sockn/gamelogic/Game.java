@@ -23,6 +23,8 @@ import java.util.ArrayList;
 import java.util.Optional;
 import java.util.Set;
 
+import static sockn.resources.config.Config.RESOURCES_IMAGES;
+
 public class Game {
     public static final String IMAGE_VIEW_PUTZEN = ".imageViewPutzen";
     public static final String VIEWS_GAME_FXML = "../views/game.fxml";
@@ -111,7 +113,7 @@ public class Game {
 
     private void drawPutzenIcons() {
         String imageName = "Putzen-" + Config.PLAYER_LIVES + ".png";
-        String url = getClass().getResource("../../images/" + imageName).toExternalForm();
+        String url = getClass().getResource(RESOURCES_IMAGES + imageName).toExternalForm();
 
         Set<Node> imageViewsPutzen = this.rootPane.lookupAll(".imageViewPutzen");
         for (Node node : imageViewsPutzen) {
@@ -295,7 +297,7 @@ public class Game {
 
             if(imageViewPutzen != null) {
                 int playerScore = this.players[index].getScore();
-                String url = getClass().getResource("../../images/Putzen-" + playerScore + ".png").toExternalForm();
+                String url = getClass().getResource(RESOURCES_IMAGES + "Putzen-" + playerScore + ".png").toExternalForm();
                 imageViewPutzen.setImage(new Image(url));
             }
         }

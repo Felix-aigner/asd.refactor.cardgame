@@ -22,6 +22,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
+import static sockn.resources.config.Config.RESOURCES_IMAGES;
+
 public class Round {
     private int roundNumber;
     private BorderPane board;
@@ -136,7 +138,7 @@ public class Round {
                 ImageView imgView = playerCard.getImageView();
 
                 if (Config.HIDDEN_CARDS) {
-                    String url = getClass().getResource("../../images/Back.gif").toExternalForm();
+                    String url = getClass().getResource(RESOURCES_IMAGES + "Back.gif").toExternalForm();
                     imgView.setImage(new Image(url));
                 }
 
