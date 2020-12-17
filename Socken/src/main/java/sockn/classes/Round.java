@@ -7,10 +7,15 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.*;
+import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.Pane;
+import javafx.scene.layout.StackPane;
 import javafx.stage.StageStyle;
 import sockn.enums.CardColor;
 import sockn.enums.PlayerPosition;
+import sockn.utils.CardSymbolUtil;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
@@ -182,9 +187,9 @@ public class Round {
             Card card = entry.getValue();
 
             boolean isTrump = card.getColor() == this.trump;
-            points += card.getSymbol().getPoints(isTrump);
+            points += CardSymbolUtil.getPoints(card.getSymbol(), isTrump);
 
-            int cardValue = card.getSymbol().getValue(isTrump);
+            int cardValue = CardSymbolUtil.getValue(card.getSymbol(), isTrump);
             if(isTrump) {
                 cardValue += 100;
             }
