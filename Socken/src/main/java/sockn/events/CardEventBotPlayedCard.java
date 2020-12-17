@@ -1,6 +1,7 @@
-package sockn.classes;
+package sockn.events;
 
 import javafx.event.EventType;
+import sockn.gamelogic.Card;
 
 public class CardEventBotPlayedCard extends CardEvent {
 
@@ -8,7 +9,7 @@ public class CardEventBotPlayedCard extends CardEvent {
     private final int playerNumber;
     private final Card playedCard;
 
-    CardEventBotPlayedCard(int playerNumber, Card playedCard) {
+    public CardEventBotPlayedCard(int playerNumber, Card playedCard) {
         super(BOT_PLAYED_CARD);
         this.playerNumber = playerNumber;
         this.playedCard = playedCard;

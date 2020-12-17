@@ -1,11 +1,11 @@
-package sockn.classes;
+package sockn.events;
 
 import javafx.event.Event;
 import javafx.event.EventType;
 
 public abstract class CardEvent extends Event {
 
-    static final EventType<CardEvent> PLAYED_CARD = new EventType(ANY);
+    public static final EventType<CardEvent> PLAYED_CARD = new EventType(ANY);
 
     CardEvent(EventType<? extends Event> eventType) {
         super(eventType);

@@ -8,8 +8,8 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
-import sockn.classes.Game;
 import sockn.controllers.MenuController;
+import sockn.gamelogic.Game;
 
 import java.io.IOException;
 

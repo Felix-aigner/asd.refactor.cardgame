@@ -1,4 +1,4 @@
-package sockn.classes;
+package sockn.gamelogic;
 
 import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
@@ -15,12 +15,20 @@ import javafx.scene.layout.Pane;
 import javafx.scene.text.Font;
 import javafx.stage.StageStyle;
 import sockn.enums.PlayerPosition;
+import sockn.events.CardEvent;
+import sockn.events.CardEventHandler;
+import sockn.resources.config.Config;
 
 import java.util.ArrayList;
 import java.util.Optional;
 import java.util.Set;
 
+import static sockn.resources.config.Config.RESOURCES_IMAGES;
+
 public class Game {
+    public static final String IMAGE_VIEW_PUTZEN = ".imageViewPutzen";
+    public static final String VIEWS_GAME_FXML = "../views/game.fxml";
+    public static final String LABEL_PLAYER_NAME = ".labelPlayerName";
     private BorderPane rootPane;
     private int playerCount;
     private Player[] players;
@@ -33,7 +41,7 @@ public class Game {
         this.playerCount = playerCount;
         this.playerName = playerName;
 
-        this.rootPane = FXMLLoader.load(getClass().getResource("../views/game.fxml"));
+        this.rootPane = FXMLLoader.load(getClass().getResource(VIEWS_GAME_FXML));
     }
 
     public Pane getRootPane() {
@@ -49,7 +57,7 @@ public class Game {
 
         players[0] = new Player(0, this.playerName, true, this.rootPane);
         for(int i = 1; i < playerCount; i++) {
-            players[i] = new Player(i, Constants.COMP_NAMES[i-1], false, this.rootPane);
+            players[i] = new Player(i, Config.COMP_NAMES[i - 1], false, this.rootPane);
         }
     }
 
@@ -83,29 +91,29 @@ public class Game {
     }
 
     private void drawPlayerAndBotNames() {
-        ((Label) this.rootPane.getBottom().lookup(".labelPlayerName")).setText(this.playerName);
+        ((Label) this.rootPane.getBottom().lookup(LABEL_PLAYER_NAME)).setText(this.playerName);
         switch (this.playerCount) {
             case 2:
                 this.rootPane.setLeft(null);
                 this.rootPane.setRight(null);
-                ((Label) this.rootPane.getTop().lookup(".labelPlayerName")).setText(Constants.COMP_NAMES[0]);
+                ((Label) this.rootPane.getTop().lookup(LABEL_PLAYER_NAME)).setText(Config.COMP_NAMES[0]);
                 break;
             case 3:
                 this.rootPane.setTop(null);
-                ((Label) this.rootPane.getLeft().lookup(".labelPlayerName")).setText(Constants.COMP_NAMES[0]);
-                ((Label) this.rootPane.getRight().lookup(".labelPlayerName")).setText(Constants.COMP_NAMES[1]);
+                ((Label) this.rootPane.getLeft().lookup(LABEL_PLAYER_NAME)).setText(Config.COMP_NAMES[0]);
+                ((Label) this.rootPane.getRight().lookup(LABEL_PLAYER_NAME)).setText(Config.COMP_NAMES[1]);
                 break;
             case 4:
-                ((Label) this.rootPane.getLeft().lookup(".labelPlayerName")).setText(Constants.COMP_NAMES[0]);
-                ((Label) this.rootPane.getTop().lookup(".labelPlayerName")).setText(Constants.COMP_NAMES[1]);
-                ((Label) this.rootPane.getRight().lookup(".labelPlayerName")).setText(Constants.COMP_NAMES[2]);
+                ((Label) this.rootPane.getLeft().lookup(LABEL_PLAYER_NAME)).setText(Config.COMP_NAMES[0]);
+                ((Label) this.rootPane.getTop().lookup(LABEL_PLAYER_NAME)).setText(Config.COMP_NAMES[1]);
+                ((Label) this.rootPane.getRight().lookup(LABEL_PLAYER_NAME)).setText(Config.COMP_NAMES[2]);
                 break;
         }
     }
 
     private void drawPutzenIcons() {
-        String imageName = "Putzen-" + Constants.PLAYER_LIVES + ".png";
-        String url = getClass().getResource("../../images/" + imageName).toExternalForm();
+        String imageName = "Putzen-" + Config.PLAYER_LIVES + ".png";
+        String url = getClass().getResource(RESOURCES_IMAGES + imageName).toExternalForm();
 
         Set<Node> imageViewsPutzen = this.rootPane.lookupAll(".imageViewPutzen");
         for (Node node : imageViewsPutzen) {
@@ -116,13 +124,13 @@ public class Game {
     private void initEventListeners() {
         this.rootPane.addEventHandler(CardEvent.PLAYED_CARD, new CardEventHandler() {
             @Override
-            void onBotPlayedCard(int playerNumber, Card playedCard) {
+            public void onBotPlayedCard(int playerNumber, Card playedCard) {
                 addPlayedCardToRound(players[playerNumber], playedCard);
                 forcePlayerToPlayCard(indexOfNextPlayer(playerNumber));
             }
 
             @Override
-            void onHumanPlayedCard(int playerNumber, Card playedCard) {
+            public void onHumanPlayedCard(int playerNumber, Card playedCard) {
                 players[playerNumber].removeClickListenerForCards();
 
                 addPlayedCardToRound(players[playerNumber], playedCard);
@@ -274,22 +282,22 @@ public class Game {
 
             switch (this.positions[index]) {
                 case BOTTOM:
-                    imageViewPutzen = (ImageView) this.rootPane.getBottom().lookup(".imageViewPutzen");
+                    imageViewPutzen = (ImageView) this.rootPane.getBottom().lookup(IMAGE_VIEW_PUTZEN);
                     break;
                 case LEFT:
-                    imageViewPutzen = (ImageView) this.rootPane.getLeft().lookup(".imageViewPutzen");
+                    imageViewPutzen = (ImageView) this.rootPane.getLeft().lookup(IMAGE_VIEW_PUTZEN);
                     break;
                 case TOP:
-                    imageViewPutzen = (ImageView) this.rootPane.getTop().lookup(".imageViewPutzen");
+                    imageViewPutzen = (ImageView) this.rootPane.getTop().lookup(IMAGE_VIEW_PUTZEN);
                     break;
                 case RIGHT:
-                    imageViewPutzen = (ImageView) this.rootPane.getRight().lookup(".imageViewPutzen");
+                    imageViewPutzen = (ImageView) this.rootPane.getRight().lookup(IMAGE_VIEW_PUTZEN);
                     break;
             }
 
             if(imageViewPutzen != null) {
                 int playerScore = this.players[index].getScore();
-                String url = getClass().getResource("../../images/Putzen-" + playerScore + ".png").toExternalForm();
+                String url = getClass().getResource(RESOURCES_IMAGES + "Putzen-" + playerScore + ".png").toExternalForm();
                 imageViewPutzen.setImage(new Image(url));
             }
         }

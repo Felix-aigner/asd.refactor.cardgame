@@ -1,4 +1,4 @@
-package sockn.classes;
+package sockn.gamelogic;
 
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -7,13 +7,22 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.*;
+import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.Pane;
+import javafx.scene.layout.StackPane;
 import javafx.stage.StageStyle;
 import sockn.enums.CardColor;
 import sockn.enums.PlayerPosition;
+import sockn.exceptions.SocknException;
+import sockn.resources.config.Config;
+import sockn.utils.CardSymbolUtil;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
+
+import static sockn.resources.config.Config.RESOURCES_IMAGES;
 
 public class Round {
     private int roundNumber;
@@ -66,8 +75,8 @@ public class Round {
     }
 
     void distributeCardsToPlayers() {
-        for(int i = 0; i < Constants.CARD_HAND_SIZE; i++) {
-            for(Player player : players) {
+        for (int i = 0; i < Config.CARD_HAND_SIZE; i++) {
+            for (Player player : players) {
                 try {
                     player.receiveCard(cardStack.getCard());
                 } catch (SocknException e) {
@@ -128,8 +137,8 @@ public class Round {
             for (Card playerCard : playerCards) {
                 ImageView imgView = playerCard.getImageView();
 
-                if(Constants.HIDDEN_CARDS) {
-                    String url = getClass().getResource("../../images/Back.gif").toExternalForm();
+                if (Config.HIDDEN_CARDS) {
+                    String url = getClass().getResource(RESOURCES_IMAGES + "Back.gif").toExternalForm();
                     imgView.setImage(new Image(url));
                 }
 
@@ -182,9 +191,9 @@ public class Round {
             Card card = entry.getValue();
 
             boolean isTrump = card.getColor() == this.trump;
-            points += card.getSymbol().getPoints(isTrump);
+            points += CardSymbolUtil.getPoints(card.getSymbol(), isTrump);
 
-            int cardValue = card.getSymbol().getValue(isTrump);
+            int cardValue = CardSymbolUtil.getValue(card.getSymbol(), isTrump);
             if(isTrump) {
                 cardValue += 100;
             }
