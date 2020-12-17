@@ -14,6 +14,7 @@ import javafx.scene.layout.StackPane;
 import javafx.stage.StageStyle;
 import sockn.enums.CardColor;
 import sockn.enums.PlayerPosition;
+import sockn.exceptions.SocknException;
 import sockn.utils.CardSymbolUtil;
 
 import java.util.ArrayList;

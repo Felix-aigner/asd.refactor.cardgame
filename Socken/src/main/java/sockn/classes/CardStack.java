@@ -2,8 +2,11 @@ package sockn.classes;
 
 import sockn.enums.CardColor;
 import sockn.enums.CardSymbol;
+import sockn.exceptions.SocknException;
 
-import java.util.*;
+import java.util.Collections;
+import java.util.EmptyStackException;
+import java.util.Stack;
 
 public class CardStack {
     private Stack<Card> cards;
