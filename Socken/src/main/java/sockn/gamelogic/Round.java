@@ -1,4 +1,4 @@
-package sockn.classes;
+package sockn.gamelogic;
 
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;

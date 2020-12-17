@@ -1,7 +1,7 @@
 package sockn.events;
 
 import javafx.event.EventHandler;
-import sockn.classes.Card;
+import sockn.gamelogic.Card;
 
 public abstract class CardEventHandler implements EventHandler<CardEvent> {
 

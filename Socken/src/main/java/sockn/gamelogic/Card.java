@@ -1,4 +1,4 @@
-package sockn.classes;
+package sockn.gamelogic;
 
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;

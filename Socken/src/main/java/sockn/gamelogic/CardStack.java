@@ -1,4 +1,4 @@
-package sockn.classes;
+package sockn.gamelogic;
 
 import sockn.enums.CardColor;
 import sockn.enums.CardSymbol;
@@ -9,6 +9,7 @@ import java.util.EmptyStackException;
 import java.util.Stack;
 
 public class CardStack {
+    public static final String NO_MORE_CARDS = "No more cards!";
     private Stack<Card> cards;
 
     public CardStack() {
@@ -34,7 +35,7 @@ public class CardStack {
         try {
             return cards.pop();
         } catch (EmptyStackException e) {
-            throw new SocknException("No more cards!");
+            throw new SocknException(NO_MORE_CARDS);
         }
     }
 
@@ -42,7 +43,7 @@ public class CardStack {
         try {
             return cards.peek();
         } catch (EmptyStackException e) {
-            throw new SocknException("No more cards!");
+            throw new SocknException(NO_MORE_CARDS);
         }
     }
 }

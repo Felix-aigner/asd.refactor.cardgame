@@ -1,4 +1,4 @@
-package sockn.classes;
+package sockn.gamelogic;
 
 import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
@@ -25,6 +25,8 @@ import java.util.Set;
 
 public class Game {
     public static final String IMAGE_VIEW_PUTZEN = ".imageViewPutzen";
+    public static final String VIEWS_GAME_FXML = "../views/game.fxml";
+    public static final String LABEL_PLAYER_NAME = ".labelPlayerName";
     private BorderPane rootPane;
     private int playerCount;
     private Player[] players;
@@ -37,7 +39,7 @@ public class Game {
         this.playerCount = playerCount;
         this.playerName = playerName;
 
-        this.rootPane = FXMLLoader.load(getClass().getResource("../views/game.fxml"));
+        this.rootPane = FXMLLoader.load(getClass().getResource(VIEWS_GAME_FXML));
     }
 
     public Pane getRootPane() {
@@ -87,22 +89,22 @@ public class Game {
     }
 
     private void drawPlayerAndBotNames() {
-        ((Label) this.rootPane.getBottom().lookup(".labelPlayerName")).setText(this.playerName);
+        ((Label) this.rootPane.getBottom().lookup(LABEL_PLAYER_NAME)).setText(this.playerName);
         switch (this.playerCount) {
             case 2:
                 this.rootPane.setLeft(null);
                 this.rootPane.setRight(null);
-                ((Label) this.rootPane.getTop().lookup(".labelPlayerName")).setText(Config.COMP_NAMES[0]);
+                ((Label) this.rootPane.getTop().lookup(LABEL_PLAYER_NAME)).setText(Config.COMP_NAMES[0]);
                 break;
             case 3:
                 this.rootPane.setTop(null);
-                ((Label) this.rootPane.getLeft().lookup(".labelPlayerName")).setText(Config.COMP_NAMES[0]);
-                ((Label) this.rootPane.getRight().lookup(".labelPlayerName")).setText(Config.COMP_NAMES[1]);
+                ((Label) this.rootPane.getLeft().lookup(LABEL_PLAYER_NAME)).setText(Config.COMP_NAMES[0]);
+                ((Label) this.rootPane.getRight().lookup(LABEL_PLAYER_NAME)).setText(Config.COMP_NAMES[1]);
                 break;
             case 4:
-                ((Label) this.rootPane.getLeft().lookup(".labelPlayerName")).setText(Config.COMP_NAMES[0]);
-                ((Label) this.rootPane.getTop().lookup(".labelPlayerName")).setText(Config.COMP_NAMES[1]);
-                ((Label) this.rootPane.getRight().lookup(".labelPlayerName")).setText(Config.COMP_NAMES[2]);
+                ((Label) this.rootPane.getLeft().lookup(LABEL_PLAYER_NAME)).setText(Config.COMP_NAMES[0]);
+                ((Label) this.rootPane.getTop().lookup(LABEL_PLAYER_NAME)).setText(Config.COMP_NAMES[1]);
+                ((Label) this.rootPane.getRight().lookup(LABEL_PLAYER_NAME)).setText(Config.COMP_NAMES[2]);
                 break;
         }
     }

@@ -1,7 +1,7 @@
 package sockn.events;
 
 import javafx.event.EventType;
-import sockn.classes.Card;
+import sockn.gamelogic.Card;
 
 public class CardEventHumanPlayedCard extends CardEvent {
 

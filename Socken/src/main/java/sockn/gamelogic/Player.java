@@ -1,4 +1,4 @@
-package sockn.classes;
+package sockn.gamelogic;
 
 import javafx.event.Event;
 import javafx.scene.control.Label;
@@ -13,6 +13,7 @@ import sockn.resources.config.Config;
 import java.util.ArrayList;
 
 public class Player {
+    public static final String PANE_PLAYED_CARDS = "#panePlayedCards";
     private int number;
     private String name;
     private boolean isHuman;
@@ -116,7 +117,7 @@ public class Player {
         Pane parent = (Pane) imgView.getParent();
 
         // get container for played cards
-        HBox cardContainer = (HBox) this.board.lookup("#panePlayedCards");
+        HBox cardContainer = (HBox) this.board.lookup(PANE_PLAYED_CARDS);
 
         // add card to card container
         cardContainer.getChildren().add(imgView);
@@ -134,7 +135,7 @@ public class Player {
     }
 
     private void resetPlayedCardsOnBoard() {
-        HBox cardContainer = (HBox) this.board.lookup("#panePlayedCards");
+        HBox cardContainer = (HBox) this.board.lookup(PANE_PLAYED_CARDS);
         cardContainer.getChildren().clear();
     }
 
