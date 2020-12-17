@@ -8,6 +8,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import sockn.events.CardEventBotPlayedCard;
 import sockn.events.CardEventHumanPlayedCard;
+import sockn.resources.config.Config;
 
 import java.util.ArrayList;
 
@@ -17,7 +18,7 @@ public class Player {
     private boolean isHuman;
     private BorderPane board;
     private ArrayList<Card> handCards;
-    private int score = Constants.PLAYER_LIVES;
+    private int score = Config.PLAYER_LIVES;
 
     public Player(int number, String name, boolean isHuman, BorderPane board) {
         this.number = number;

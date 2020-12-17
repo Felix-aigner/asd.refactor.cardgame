@@ -15,6 +15,7 @@ import javafx.stage.StageStyle;
 import sockn.enums.CardColor;
 import sockn.enums.PlayerPosition;
 import sockn.exceptions.SocknException;
+import sockn.resources.config.Config;
 import sockn.utils.CardSymbolUtil;
 
 import java.util.ArrayList;
@@ -72,8 +73,8 @@ public class Round {
     }
 
     void distributeCardsToPlayers() {
-        for(int i = 0; i < Constants.CARD_HAND_SIZE; i++) {
-            for(Player player : players) {
+        for (int i = 0; i < Config.CARD_HAND_SIZE; i++) {
+            for (Player player : players) {
                 try {
                     player.receiveCard(cardStack.getCard());
                 } catch (SocknException e) {
@@ -134,7 +135,7 @@ public class Round {
             for (Card playerCard : playerCards) {
                 ImageView imgView = playerCard.getImageView();
 
-                if(Constants.HIDDEN_CARDS) {
+                if (Config.HIDDEN_CARDS) {
                     String url = getClass().getResource("../../images/Back.gif").toExternalForm();
                     imgView.setImage(new Image(url));
                 }

@@ -17,6 +17,7 @@ import javafx.stage.StageStyle;
 import sockn.enums.PlayerPosition;
 import sockn.events.CardEvent;
 import sockn.events.CardEventHandler;
+import sockn.resources.config.Config;
 
 import java.util.ArrayList;
 import java.util.Optional;
@@ -51,7 +52,7 @@ public class Game {
 
         players[0] = new Player(0, this.playerName, true, this.rootPane);
         for(int i = 1; i < playerCount; i++) {
-            players[i] = new Player(i, Constants.COMP_NAMES[i-1], false, this.rootPane);
+            players[i] = new Player(i, Config.COMP_NAMES[i - 1], false, this.rootPane);
         }
     }
 
@@ -90,23 +91,23 @@ public class Game {
             case 2:
                 this.rootPane.setLeft(null);
                 this.rootPane.setRight(null);
-                ((Label) this.rootPane.getTop().lookup(".labelPlayerName")).setText(Constants.COMP_NAMES[0]);
+                ((Label) this.rootPane.getTop().lookup(".labelPlayerName")).setText(Config.COMP_NAMES[0]);
                 break;
             case 3:
                 this.rootPane.setTop(null);
-                ((Label) this.rootPane.getLeft().lookup(".labelPlayerName")).setText(Constants.COMP_NAMES[0]);
-                ((Label) this.rootPane.getRight().lookup(".labelPlayerName")).setText(Constants.COMP_NAMES[1]);
+                ((Label) this.rootPane.getLeft().lookup(".labelPlayerName")).setText(Config.COMP_NAMES[0]);
+                ((Label) this.rootPane.getRight().lookup(".labelPlayerName")).setText(Config.COMP_NAMES[1]);
                 break;
             case 4:
-                ((Label) this.rootPane.getLeft().lookup(".labelPlayerName")).setText(Constants.COMP_NAMES[0]);
-                ((Label) this.rootPane.getTop().lookup(".labelPlayerName")).setText(Constants.COMP_NAMES[1]);
-                ((Label) this.rootPane.getRight().lookup(".labelPlayerName")).setText(Constants.COMP_NAMES[2]);
+                ((Label) this.rootPane.getLeft().lookup(".labelPlayerName")).setText(Config.COMP_NAMES[0]);
+                ((Label) this.rootPane.getTop().lookup(".labelPlayerName")).setText(Config.COMP_NAMES[1]);
+                ((Label) this.rootPane.getRight().lookup(".labelPlayerName")).setText(Config.COMP_NAMES[2]);
                 break;
         }
     }
 
     private void drawPutzenIcons() {
-        String imageName = "Putzen-" + Constants.PLAYER_LIVES + ".png";
+        String imageName = "Putzen-" + Config.PLAYER_LIVES + ".png";
         String url = getClass().getResource("../../images/" + imageName).toExternalForm();
 
         Set<Node> imageViewsPutzen = this.rootPane.lookupAll(".imageViewPutzen");
