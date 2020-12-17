@@ -24,6 +24,7 @@ import java.util.Optional;
 import java.util.Set;
 
 public class Game {
+    public static final String IMAGE_VIEW_PUTZEN = ".imageViewPutzen";
     private BorderPane rootPane;
     private int playerCount;
     private Player[] players;
@@ -277,16 +278,16 @@ public class Game {
 
             switch (this.positions[index]) {
                 case BOTTOM:
-                    imageViewPutzen = (ImageView) this.rootPane.getBottom().lookup(".imageViewPutzen");
+                    imageViewPutzen = (ImageView) this.rootPane.getBottom().lookup(IMAGE_VIEW_PUTZEN);
                     break;
                 case LEFT:
-                    imageViewPutzen = (ImageView) this.rootPane.getLeft().lookup(".imageViewPutzen");
+                    imageViewPutzen = (ImageView) this.rootPane.getLeft().lookup(IMAGE_VIEW_PUTZEN);
                     break;
                 case TOP:
-                    imageViewPutzen = (ImageView) this.rootPane.getTop().lookup(".imageViewPutzen");
+                    imageViewPutzen = (ImageView) this.rootPane.getTop().lookup(IMAGE_VIEW_PUTZEN);
                     break;
                 case RIGHT:
-                    imageViewPutzen = (ImageView) this.rootPane.getRight().lookup(".imageViewPutzen");
+                    imageViewPutzen = (ImageView) this.rootPane.getRight().lookup(IMAGE_VIEW_PUTZEN);
                     break;
             }
 
