@@ -17,12 +17,9 @@ public class CardStack {
     }
 
     private void initStack() {
-        Card[] cardNames = new Card[36];
 
-        // init stack
         cards = new Stack<>();
 
-        // generate card names
         for(CardColor color : CardColor.values()) {
             for(CardSymbol symbol : CardSymbol.values()) {
                 cards.push(new Card(color, symbol));
