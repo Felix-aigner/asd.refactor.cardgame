@@ -6,8 +6,8 @@ public enum CardSymbol {
     ACHT(8),
     NEUN(9),
     ZEHN(10),
-    UNTER(11), //Bauer
-    OBER(12), //Dame
+    UNTER(11),
+    OBER(12),
     KOENIG(13),
     ASS(14);
 

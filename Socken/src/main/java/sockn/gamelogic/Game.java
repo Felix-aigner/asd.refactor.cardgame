@@ -146,27 +146,22 @@ public class Game {
             }
 
             private void forcePlayerToPlayCard(int playerNumber) {
-                // check if all players already put card on the table
                 if(actualRound.getActualPlayedCards().size() == players.length) {
-                    // determine stich and draw points and stich
                     int[] playerIdxAndPoints = actualRound.determineStich();
                     int playerIdxOfStich = playerIdxAndPoints[0];
                     int points = playerIdxAndPoints[1];
                     actualRound.drawStichsAndPoints(playerIdxOfStich, points);
 
-                    // wait 3 seconds
                     new Thread(() -> {
                         try {
                             Thread.sleep(3000);
                             Platform.runLater(
                                 () -> {
-                                    // check if all hand cards were played
                                     if(players[0].getHandCards().size() == 0) {
                                         roundIsFinished();
                                     } else {
                                         Player player = players[playerIdxOfStich];
                                         takeCardsFromTable(true);
-                                        // if its the turn of the bot cause of a stich, force bot to play card
                                         if (!(player.getIsHuman())) {
                                             forcePlayerToPlayCard(playerIdxOfStich);
                                         } else {
@@ -180,7 +175,6 @@ public class Game {
                     }).start();
 
                 } else if(!players[playerNumber].getIsHuman()) {
-                    // force bot to play next card
                     players[playerNumber].playCard();
                 } else if(players[playerNumber].getIsHuman()) {
                     players[playerNumber].initClickListenerForCards();
@@ -229,7 +223,6 @@ public class Game {
             winnerNames.append(player.getName());
         }
 
-        // show dialog
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION );
         alert.setHeaderText("GAME OVER");
         alert.setContentText("Sieger: " + winnerNames);
@@ -251,7 +244,6 @@ public class Game {
     }
 
     private void announceRoundWinner() {
-        // determine round winner
         int[] points = this.actualRound.getPoints();
         int[] winnerPlayerIndexes = this.determineWinnerPlayerIndexes(points);
 
@@ -262,13 +254,11 @@ public class Game {
             prefix = " & ";
             winnerNames.append(this.players[index].getName()).append(" (").append(points[index]).append(")");
 
-            // reduce score of player
             this.players[index].reduceScore();
         }
 
         this.putzen(winnerPlayerIndexes);
 
-        // show dialog
         Alert alert = new Alert(Alert.AlertType.INFORMATION );
         alert.setHeaderText("Rundensieger");
         alert.setContentText("Putzen: " + winnerNames);
@@ -375,7 +365,6 @@ public class Game {
         int i, first, second, firstIndex, secondIndex;
         int arrSize = points.length;
 
-        // two players
         if(arrSize == 2)
         {
             if(points[0] > points [1]) {
