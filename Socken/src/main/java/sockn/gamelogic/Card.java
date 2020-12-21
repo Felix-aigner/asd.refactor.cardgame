@@ -8,10 +8,9 @@ import sockn.enums.CardSymbol;
 import static sockn.resources.config.Config.RESOURCES_IMAGES;
 
 public class Card {
-    private CardColor color;
-    private CardSymbol symbol;
-    private Image image;
-    private ImageView imageView = new ImageView();
+    private final CardColor color;
+    private final CardSymbol symbol;
+    private final ImageView imageView = new ImageView();
 
     public Card(CardColor color, CardSymbol symbol) {
         this.color = color;
@@ -27,18 +26,14 @@ public class Card {
         return this.symbol;
     }
 
-    Image getImage() {
-        return this.image;
-    }
-
     ImageView getImageView() {
         return this.imageView;
     }
 
     void setImage() {
         String url = getClass().getResource(RESOURCES_IMAGES + generatePictureUrl()).toExternalForm();
-        this.image = new Image(url);
-        this.imageView.setImage(this.image);
+        Image image = new Image(url);
+        this.imageView.setImage(image);
     }
 
     private String generatePictureUrl() {
