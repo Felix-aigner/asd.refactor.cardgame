@@ -73,30 +73,22 @@ public class Player {
     }
 
     void playCard() {
-        // determine index of card which gets played
         int indexOfCardToPlay = (int)(Math.random() * this.handCards.size());
 
-        // get card
         Card card = this.handCards.get(indexOfCardToPlay);
 
-        // set card image (instead of card back)
         card.setImage();
 
-        // put card on board
         this.putCardOnBoard(card.getImageView());
 
-        // delete card from hand cards
         this.handCards.remove(indexOfCardToPlay);
 
-        // fire event
         this.fireCardEvent(card);
     }
 
     private void playCard(Event e) {
-        // get clicked card
         ImageView imgView = (ImageView) e.getTarget();
 
-        // remove card from hand cards
         int index = -1;
         for(int i = 0; i < this.handCards.size(); i++) {
             if(this.handCards.get(i).getImageView() == imgView) {
@@ -106,23 +98,18 @@ public class Player {
         }
         this.handCards.remove(index);
 
-        // reset event listener
         imgView.setOnMouseClicked(null);
 
         this.putCardOnBoard(imgView);
     }
 
     private void putCardOnBoard(ImageView imgView) {
-        // get parent element of card to remove card afterwards
         Pane parent = (Pane) imgView.getParent();
 
-        // get container for played cards
         HBox cardContainer = (HBox) this.board.lookup(PANE_PLAYED_CARDS);
 
-        // add card to card container
         cardContainer.getChildren().add(imgView);
 
-        // get container for player names of played card
         HBox playerNamesContainer = (HBox) this.board.lookup("#containerPlayerNamesOfCards");
         Label labelPayerName = new Label();
         labelPayerName.setText(this.name);
@@ -130,7 +117,6 @@ public class Player {
         labelPayerName.setMaxWidth(73.0);
         playerNamesContainer.getChildren().add(labelPayerName);
 
-        // remove card from hand
         parent.getChildren().remove(imgView);
     }
 

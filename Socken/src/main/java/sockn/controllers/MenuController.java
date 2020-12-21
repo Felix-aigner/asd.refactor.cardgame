@@ -5,7 +5,6 @@ import javafx.scene.control.Label;
 import javafx.scene.text.Text;
 
 public class MenuController {
-    // The reference will be injected by the FXML loader
     @FXML private int playerCount = 4;
 
     @FXML private Text actiontarget;

@@ -58,11 +58,9 @@ public class Round {
     }
 
     void showRoundStartedAlert() {
-        // reset trump
         Label trumpLabel = (Label) this.board.lookup("#trump");
         trumpLabel.setText("-");
 
-        // show dialog
         Alert alert = new Alert(Alert.AlertType.INFORMATION );
         alert.setHeaderText("RUNDE " + this.roundNumber);
         alert.setContentText("Karten werden gemischt...");
@@ -84,8 +82,6 @@ public class Round {
                 }
             }
         }
-
-        // init click listener for human player
         this.players[0].initClickListenerForCards();
     }
 
@@ -203,7 +199,6 @@ public class Round {
             }
         }
 
-        // reset
         this.actualPlayedCards = new HashMap<Player, Card>();
 
         return new int[]{ playerIndex, points };
